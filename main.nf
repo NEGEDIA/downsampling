@@ -14,7 +14,7 @@ process DOWNSAMPLING {
     tuple val(samplename), val(down_size), path(input), val(output)
 
     output:
-    tuple val(samplename), path("${samplename}_R1_sub.fastq.gz"), emit: fq
+    tuple val(samplename), path("${samplename}_sub.fastq.gz"), emit: fq
 
     script:
     """
