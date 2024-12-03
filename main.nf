@@ -33,8 +33,6 @@ workflow PREPROCESS {
     main:
     DOWNSAMPLING( input_ch )
 
-    DOWNSAMPLING.out.fq.view()
-
     publish:
     DOWNSAMPLING.out.fq >> "Subsampling_Reads"
 
