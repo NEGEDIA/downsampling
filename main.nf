@@ -9,8 +9,6 @@ input_ch = Channel.fromPath( params.input )
 process DOWNSAMPLING {
     container 'europe-west1-docker.pkg.dev/ngdx-nextflow/negedia/seqtk:r132'
     tag "$samplename"
-    stageInMode 'copy'
-    stageOutMode 'move'
 
     input:
     tuple val(samplename), val(down_size), path(input), val(output)
@@ -23,7 +21,7 @@ process DOWNSAMPLING {
     echo "Sample Name $samplename"
     echo "Down Size $down_size"
 
-    seqtk sample -s100 ${workflow.workDir}/${input} $down_size > ${samplename}_sub.fastq
+    seqtk sample -s100 $input $down_size > ${samplename}_sub.fastq
     pigz ${samplename}_sub.fastq
     """
 }
