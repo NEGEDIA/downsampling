@@ -8,10 +8,10 @@ process DOWNSAMPLING {
     debug true
     container 'europe-west1-docker.pkg.dev/ngdx-nextflow/negedia/seqtk:r132'
     tag "$samplename"
-    publishDir "$output", mode: 'copy'
+    publishDir "$params.output/Subsampling_reads/$output", mode: 'copy'
 
     input:
-    tuple val(samplename), val(down_size), path(input), val(output)
+    tuple val(samplename), val(down_size), path(input), path(output)
 
     output:
     tuple val(samplename), path("${samplename}_sub.fastq.gz"), emit: fq
