@@ -15,7 +15,7 @@ if (params.input) {
             // Estrai i campi dalla riga TSV
             def samplename = row[1]
             def down_size = row[2]
-            def input_path = returnFile(row[0]) // Assumi che 'returnFile' gestisca il path
+            def input_path = row[0] // Assumi che 'returnFile' gestisca il path
             def output_path = row[3]
             
             // Controlla se ci sono 4 colonne
