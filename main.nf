@@ -32,7 +32,7 @@ workflow PREPROCESS {
     DOWNSAMPLING( input_ch )
 
     publish:
-    DOWNSAMPLING.out.fq >> input_ch.output
+    DOWNSAMPLING.out.fq
 
 }
 
