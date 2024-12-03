@@ -12,7 +12,7 @@ process DOWNSAMPLING {
     disk '10 GB'
 
     input:
-    tuple val(samplename), val(down_size), path(input), val(output)
+    tuple val(samplename), val(down_size), path(input.stageAs("input.fastq.gz")), val(output)
 
     output:
     tuple val(output), val(samplename), path("${samplename}_sub.fastq.gz"), emit: fq
@@ -21,7 +21,7 @@ process DOWNSAMPLING {
     """
     echo "Sample Name $samplename"
     echo "Down Size $down_size"
-    seqtk sample -s100 $input $down_size > ${samplename}_sub.fastq
+    seqtk sample -s100 input.fastq.gz $down_size > ${samplename}_sub.fastq
     pigz ${samplename}_sub.fastq
     """
 }
