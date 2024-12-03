@@ -1,5 +1,7 @@
 #!/usr/bin/env nextflow
 
+nextflow.preview.output = true
+
 input_ch = Channel.fromPath( params.input )
                     .splitCsv( header: true)
                     .map { row -> tuple(samplename = row.sample_name, down_size = row.down_size, input = row.input_path, output = row.output_path) }
