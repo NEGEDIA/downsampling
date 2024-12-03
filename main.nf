@@ -20,7 +20,7 @@ process DOWNSAMPLING {
     """
     echo "Sample Name $samplename"
     echo "Down Size $down_size"
-    seqtk sample -s100 $input $down_size > ${samplename}_R1_sub.fastq
+    seqtk sample -s100 $input $down_size > ${samplename}_sub.fastq
     pigz ${samplename}_R1_sub.fastq
     """
     
@@ -31,7 +31,8 @@ workflow PREPROCESS {
     input_ch
  
     main:
-    DOWNSAMPLING( input_ch )
+    //DOWNSAMPLING( input_ch )
+    input_ch.view()
 }
 
 
