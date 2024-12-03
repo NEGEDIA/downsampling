@@ -30,7 +30,7 @@ workflow PREPROCESS {
     input_ch
  
     main:
-    //DOWNSAMPLING( input_ch )
+    DOWNSAMPLING( input_ch )
     input_ch.view()
 }
 
