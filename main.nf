@@ -9,7 +9,6 @@ input_ch = Channel.fromPath( params.input )
 process DOWNSAMPLING {
     container 'europe-west1-docker.pkg.dev/ngdx-nextflow/negedia/seqtk:r132'
     tag "$samplename"
-    disk 375.GB, type: 'local-ssd'
 
     input:
     tuple val(samplename), val(down_size), path(input), val(output)
