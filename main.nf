@@ -6,20 +6,17 @@ input_ch = Channel.fromPath( params.input )
 
 process DOWNSAMPLING {
     debug true
+    container 'europe-west1-docker.pkg.dev/ngdx-nextflow/negedia/seqtk:r82'
     tag "$samplename"
     publishDir "$output", mode: 'copy'
 
     input:
     tuple val(samplename), val(down_size), path(input_path), path(output_path)
 
-    output:
-    path("*.fastq.gz")
-
     script:
     """
     echo "Sample Name $samplename"
     echo "Down Size $down_size"
-    touch ${samplename}.fastq.gz
     """
     
 }
