@@ -15,7 +15,7 @@ process DOWNSAMPLING {
     tuple val(samplename), val(down_size), path(input), val(output)
 
     output:
-    tuple val(samplename), path("${samplename}_sub.fastq.gz"), emit: fq
+    tuple val(output), val(samplename), path("${samplename}_sub.fastq.gz"), emit: fq
 
     script:
     """
@@ -49,5 +49,6 @@ workflow {
 output {
     'Subsampling_Reads' {
         mode 'copy'
+        path { out, name, fastq  -> "fastq/${out}" }
     }
 }
