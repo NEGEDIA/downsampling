@@ -49,6 +49,6 @@ workflow {
 output {
     'Subsampling_Reads' {
         mode 'copy'
-        path { out, name, fastq  -> "Subsampling_Reads/${out}" }
+        path { out, name, fastq  -> "$params.outdir/Subsampling_Reads/${out}" }
     }
 }
