@@ -11,12 +11,17 @@ process DOWNSAMPLING {
     publishDir "$output", mode: 'copy'
 
     input:
-    tuple val(samplename), val(down_size), path(input_path), path(output_path)
+    tuple val(samplename), val(down_size), path(input), path(output)
+
+    output:
+    tuple val(samplename), path("${samplename}_R1_sub.fastq.gz"), emit: fq
 
     script:
     """
     echo "Sample Name $samplename"
     echo "Down Size $down_size"
+    seqtk sample -s100 $input $down_size > ${samplename}_R1_sub.fastq
+    pigz ${samplename}_R1_sub.fastq
     """
     
 }
