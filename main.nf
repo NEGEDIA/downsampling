@@ -26,12 +26,6 @@ process DOWNSAMPLING {
     """
 }
 
-output {
-    'DOWNSAMPLING' {
-        mode 'copy'
-    }
-}
-
 workflow PREPROCESS {
     take:
     input_ch
@@ -52,4 +46,10 @@ workflow NEGEDIA {
 
 workflow {
     NEGEDIA ()
+}
+
+output {
+    'Subsampling_Reads' {
+        mode 'copy'
+    }
 }
