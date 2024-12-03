@@ -9,8 +9,7 @@ input_ch = Channel.fromPath( params.input )
 process DOWNSAMPLING {
     container 'europe-west1-docker.pkg.dev/ngdx-nextflow/negedia/seqtk:r132'
     tag "$samplename"
-    disk '10 GB'
-
+    
     input:
     tuple val(samplename), val(down_size), path(input), val(output)
 
@@ -21,9 +20,7 @@ process DOWNSAMPLING {
     """
     echo "Sample Name $samplename"
     echo "Down Size $down_size"
-    echo "Input file: $input"
-    ls -lh $input
-    
+
     seqtk sample -s100 $input $down_size > ${samplename}_sub.fastq
     pigz ${samplename}_sub.fastq
     """
