@@ -7,9 +7,9 @@ input_ch = Channel.fromPath( params.input )
                     .map { row -> tuple(samplename = row.sample_name, down_size = row.down_size, input = row.input_path, output = row.output_path) }
 
 process DOWNSAMPLING {
-    debug true
     container 'europe-west1-docker.pkg.dev/ngdx-nextflow/negedia/seqtk:r132'
     tag "$samplename"
+    disk '10 GB'
 
     input:
     tuple val(samplename), val(down_size), path(input), val(output)
