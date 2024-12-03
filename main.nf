@@ -32,7 +32,7 @@ workflow PREPROCESS {
     DOWNSAMPLING( input_ch )
 
     publish:
-    DOWNSAMPLING.out.fq
+    DOWNSAMPLING.out.fq >> "Subsampling_Reads"
 
 }
 
