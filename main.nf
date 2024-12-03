@@ -3,7 +3,7 @@
 input_ch = Channel.fromPath( params.input )
                     .splitCsv( header: true)
                     .map { row -> tuple(samplename = row.sample_name, down_size = row.down_size, input = row.input_path, output = row.output_path) }
-                    
+
 process DOWNSAMPLING {
     debug true
     container 'europe-west1-docker.pkg.dev/ngdx-nextflow/negedia/seqtk:r132'
@@ -11,7 +11,7 @@ process DOWNSAMPLING {
     publishDir "$output", mode: 'copy'
 
     input:
-    tuple val(samplename), val(down_size), path(input), path(output)
+    tuple val(samplename), val(down_size), path(input), val(output)
 
     output:
     tuple val(samplename), path("${samplename}_R1_sub.fastq.gz"), emit: fq
