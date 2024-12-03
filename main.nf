@@ -40,17 +40,16 @@ workflow PREPROCESS {
 
 }
 
-output {
-    'DOWNSAMPLING' {
-        mode 'copy'
-    }
-}
-
-
 workflow NEGEDIA {
     PREPROCESS( input_ch )
 }
 
 workflow {
     NEGEDIA ()
+}
+
+output {
+    'DOWNSAMPLING' {
+        mode 'copy'
+    }
 }
