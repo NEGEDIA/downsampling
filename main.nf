@@ -8,6 +8,7 @@ input_ch = Channel.fromPath( params.input )
 
 process DOWNSAMPLING {
     debug true
+    disk '10 GB'
     container 'europe-west1-docker.pkg.dev/ngdx-nextflow/negedia/seqtk:r132'
     tag "$samplename"
 
