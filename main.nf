@@ -10,7 +10,7 @@ process DOWNSAMPLING {
     tag "$samplename"
 
     input:
-    tuple val(samplename), val(down_size), path(input), path(output)
+    tuple val(samplename), val(down_size), path(input), val(output)
 
     output:
     tuple val(samplename), path("${samplename}_sub.fastq.gz"), emit: fq
