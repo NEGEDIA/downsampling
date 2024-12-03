@@ -8,7 +8,7 @@ process DOWNSAMPLING {
     debug true
     container 'europe-west1-docker.pkg.dev/ngdx-nextflow/negedia/seqtk:r132'
     tag "$samplename"
-    publishDir "$params.output/Subsampling_Reads/$output", mode: 'copy'
+    publishDir "$params.outdir/Subsampling_Reads/$output", mode: 'copy'
 
     input:
     tuple val(samplename), val(down_size), path(input), path(output)
