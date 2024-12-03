@@ -35,10 +35,15 @@ workflow PREPROCESS {
 
     DOWNSAMPLING.out.fq.view()
 
-
     publish:
     DOWNSAMPLING.out.fq >> "Subsampling_Reads"
 
+}
+
+output {
+    'DOWNSAMPLING' {
+        mode 'copy'
+    }
 }
 
 
