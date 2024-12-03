@@ -6,7 +6,7 @@ input_ch = Channel.fromPath( params.input )
 
 process DOWNSAMPLING {
     debug true
-    container 'europe-west1-docker.pkg.dev/ngdx-nextflow/negedia/seqtk:r82'
+    container 'europe-west1-docker.pkg.dev/ngdx-nextflow/negedia/seqtk:r132'
     tag "$samplename"
     publishDir "$output", mode: 'copy'
 
