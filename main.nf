@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow
 
-nextflow.preview.output = true
+nextflow.preview.output = false
 
 input_ch = Channel.fromPath( params.input )
                     .splitCsv( header: true)
@@ -9,6 +9,7 @@ input_ch = Channel.fromPath( params.input )
 process DOWNSAMPLING {
     container 'europe-west1-docker.pkg.dev/ngdx-nextflow/negedia/seqtk:r132'
     tag "$samplename"
+    publishDir "${params.outdir}/$output", mode: 'copy'
 
     input:
     tuple val(samplename), val(down_size), path(input), val(output)
@@ -46,9 +47,13 @@ workflow {
     NEGEDIA ()
 }
 
+/*
+
 output {
     'Subsampling_Reads' {
         mode 'copy'
         path { out, name, fastq  -> "$params.outdir/Subsampling_Reads/${out}" }
     }
 }
+
+*/
