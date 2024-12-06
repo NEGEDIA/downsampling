@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow
 
-nextflow.preview.output = false
+// nextflow.preview.output = true
 
 input_ch = Channel.fromPath( params.input )
                     .splitCsv( header: true)
