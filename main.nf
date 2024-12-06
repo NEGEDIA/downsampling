@@ -1,61 +1,25 @@
 #!/usr/bin/env nextflow
+nextflow.enable.dsl = 2
 
-// nextflow.preview.output = true
-
-input_ch = Channel.fromPath( params.input )
-                    .splitCsv( header: true)
-                    .map { row -> tuple(samplename = row.sample_name, down_size = row.down_size, input = row.input_path, output = row.output_path) }
-
-process DOWNSAMPLING {
-    container 'europe-west1-docker.pkg.dev/ngdx-nextflow/negedia/seqtk:r132'
-    tag "$samplename"
-    publishDir "${params.outdir}/$output", mode: 'copy'
-
-    input:
-    tuple val(samplename), val(down_size), path(input), val(output)
-
-    output:
-    tuple val(output), val(samplename), path("${samplename}_sub.fastq.gz"), emit: fq
-
-    script:
-    """
-    echo "Sample Name $samplename"
-    echo "Down Size $down_size"
-
-    seqtk sample -s100 $input $down_size > ${samplename}_sub.fastq
-    pigz ${samplename}_sub.fastq
-    """
-}
-
-workflow PREPROCESS {
-    take:
-    input_ch
- 
-    main:
-    DOWNSAMPLING( input_ch )
-
-    publish:
-    DOWNSAMPLING.out.fq >> "Subsampling_Reads"
-
-}
-
-workflow NEGEDIA {
-    PREPROCESS( input_ch )
-}
+include { PREPROCESS } from './workflows/preprocess'
 
 workflow {
-    NEGEDIA ()
+    input_ch = Channel.fromPath(params.input)
+        .splitCsv(header: true)
+        .map { row -> 
+            def input_files = row.input_path.split(';').collect { it.trim() }
+            [
+                [
+                    samplename: row.sample_name, 
+                    down_size: row.down_size.toInteger(), 
+                    output: row.output_path, 
+                    is_paired: input_files.size() == 2
+                ],
+                input_files
+            ]
+        }
+
+    input_ch.view { "Sample: $it" }
+
+    PREPROCESS(input_ch)
 }
-
-/*
-
-output {
-    'Subsampling_Reads' {
-        mode 'copy'
-        path { out, name, fastq  -> "$params.outdir/Subsampling_Reads/${out}" }
-    }
-}
-
-*/
-
-

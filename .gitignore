@@ -1,9 +1,5 @@
-downsamples.csv
+toydata
+.nextflow*
 work
 result
-.nextflow.log*
-nxf
-.nextflow
-report.html
-test.csv
-toydata
+test_input.csv
