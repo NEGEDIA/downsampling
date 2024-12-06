@@ -4,3 +4,5 @@ result
 .nextflow.log*
 nxf
 .nextflow
+report.html
+test.csv
