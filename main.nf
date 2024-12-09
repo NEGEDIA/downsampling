@@ -19,7 +19,7 @@ workflow {
             ]
         }
 
-    input_ch.view { "Sample: $it" }
+    // input_ch.view { "Sample: $it" }
 
     PREPROCESS(input_ch)
 }

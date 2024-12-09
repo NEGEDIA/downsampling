@@ -16,7 +16,7 @@ process DOWNSAMPLING {
     echo "Debug: meta = ${meta}"
     echo "Debug: Input files = ${input_files}"
 
-    $seqtk_cmd
+    ${seqtk_cmd}
 
     pigz ${meta.samplename}_sub*.fastq
     """
