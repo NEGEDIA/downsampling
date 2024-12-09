@@ -15,10 +15,6 @@ process DOWNSAMPLING {
     """
     echo "Debug: meta = ${meta}"
     echo "Debug: Input files = ${input_files}"
-    
-    # List the contents of the current directory
-    echo "Current directory contents:"
-    ls -la
 
     $seqtk_cmd
 
