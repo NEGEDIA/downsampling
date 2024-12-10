@@ -76,7 +76,7 @@ There are no additional configurable parameters within the pipeline itself for c
 ## 5. Software Requirements
 This pipeline requires:
 
-- Nextflow
+- Nextflow ver 24.04.4
 - seqtk
 - (Potentially others if a preprocessing step is implemented, such as fastp)
 
