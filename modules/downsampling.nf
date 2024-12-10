@@ -1,4 +1,5 @@
 process DOWNSAMPLING {
+    debug true
     tag "$meta.samplename"
     publishDir "${params.outdir}/${meta.output}", mode: 'copy'
 
