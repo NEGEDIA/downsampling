@@ -1,5 +1,6 @@
 process DOWNSAMPLING {
     debug true
+    disk '100 GB'
     tag "$meta.samplename"
     publishDir "${params.outdir}/${meta.output}", mode: 'copy'
 
