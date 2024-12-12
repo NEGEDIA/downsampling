@@ -26,8 +26,8 @@ process DOWNSAMPLING {
 def seqtkCommand(samplename, down_size, input_files, is_paired) {
     if (is_paired) {
         """
-        seqtk sample -s100 ${input_files[0]} $down_size > ${samplename}_sub_1.fastq
-        seqtk sample -s100 ${input_files[1]} $down_size > ${samplename}_sub_2.fastq
+        seqtk sample -s100 ${input_files[0]} $down_size > ${samplename}_sub_R1.fastq
+        seqtk sample -s100 ${input_files[1]} $down_size > ${samplename}_sub_R2.fastq
         """
     } else {
         "seqtk sample -s100 ${input_files[0]} $down_size > ${samplename}_sub.fastq"
