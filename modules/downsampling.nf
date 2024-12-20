@@ -2,7 +2,6 @@ process DOWNSAMPLING {
     debug true
     tag "$meta.samplename"
     publishDir "${params.outdir}/${meta.output}", mode: 'copy'
-
     container 'europe-west1-docker.pkg.dev/ngdx-nextflow/negedia/seqtk:r132'
 
     input:
