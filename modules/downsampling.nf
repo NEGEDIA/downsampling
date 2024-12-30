@@ -2,8 +2,9 @@ process DOWNSAMPLING {
     debug true
     tag "$meta.samplename"
     publishDir "${params.outdir}/${meta.output}", mode: 'copy'
-    container 'europe-west1-docker.pkg.dev/ngdx-nextflow/negedia/seqtk:r132'
-
+    //container 'europe-west1-docker.pkg.dev/ngdx-nextflow/negedia/seqtk:r132'
+    container 'community.wave.seqera.io/library/seqtk_pigz:d0e0da90602fce32'
+    
     input:
     tuple val(meta), path(input_files)
 
