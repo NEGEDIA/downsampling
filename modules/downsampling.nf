@@ -8,7 +8,7 @@ process DOWNSAMPLING {
     tuple val(meta), path(input_files)
 
     output:
-    tuple val(meta.output), val(meta.samplename), path("${meta.samplename}_sub*.fastq.gz"), emit: fq
+    tuple val(meta.output), val(meta.samplename), path("${meta.samplename}*_sub.fastq.gz"), emit: fq
 
     script:
     def bbduk_cmd = bbdukCommand(meta.samplename, meta.down_size, input_files, meta.is_paired)
@@ -17,6 +17,8 @@ process DOWNSAMPLING {
     echo "Debug: Input files = ${input_files}"
 
     ${bbduk_cmd}
+
+    pigz ${meta.samplename}*_sub.fastq
     """
 }
 
