@@ -17,8 +17,6 @@ process DOWNSAMPLING {
     echo "Debug: Input files = ${input_files}"
 
     ${bbduk_cmd}
-
-    pigz ${meta.samplename}*_sub.fastq
     """
 }
 
