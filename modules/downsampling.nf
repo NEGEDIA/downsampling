@@ -19,7 +19,7 @@ process DOWNSAMPLING {
 
     ${bbduk_cmd}
 
-    pigz ${meta.samplename}_sub*.fastq
+    pigz ${meta.samplename}*_sub.fastq
     """
 }
 
