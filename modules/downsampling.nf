@@ -23,13 +23,13 @@ process DOWNSAMPLING {
 def bbdukCommand(samplename, down_size, input_files, is_paired) {
     if (is_paired) {
         return """
-        /bin/bbmap/bbduk.sh in1=${input_files[0]} in2=${input_files[1]} reads=$down_size \
-        out1=${samplename}_R1_sub.fastq.gz out2=${samplename}_R2_sub.fastq.gz overwrite=t
+        /bin/bbmap/reformat.sh in1=${input_files[0]} in2=${input_files[1]} reads=$down_size \
+        out1=${samplename}_R1_sub.fastq.gz out2=${samplename}_R2_sub.fastq.gz overwrite=t sampleseed=3344
         """
     } else {
         return """
-        /bin/bbmap/bbduk.sh in=${input_files[0]} reads=$down_size \
-        out=${samplename}_sub.fastq.gz overwrite=t
+        /bin/bbmap/reformat.sh in=${input_files[0]} reads=$down_size \
+        out=${samplename}_sub.fastq.gz overwrite=t sampleseed=3344
         """
     }
 }
